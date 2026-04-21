@@ -27,3 +27,10 @@ I observed that when accessing /sleep, other requests are also delayed.
 This happens because the server is single-threaded and can only handle one request at a time. 
 While one request is being processed, other requests must wait.
 This shows the limitation of a single-threaded server and why multithreading is needed to improve performance.
+
+## Commit 5 Reflection
+In this step, I improved the server by using a ThreadPool to handle multiple requests concurrently.
+Previously, the server was single-threaded, so one slow request (like /sleep) would block all other requests. 
+After using ThreadPool, multiple threads can handle different requests at the same time.
+This improves performance because requests no longer need to wait for each other. 
+The ThreadPool also limits the number of threads, making it more efficient and preventing resource overload.

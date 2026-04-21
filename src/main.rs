@@ -1,22 +1,28 @@
-use std::thread;
-use std::time::Duration;
+use hello::ThreadPool;
 use std::{
-    fs,
-    io::{prelude::*, BufReader},
     net::{TcpListener, TcpStream},
+    io::{BufReader, prelude::*},
+    fs,
+    thread,
+    time::Duration,
 };
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
+    let pool = ThreadPool::new(4); // ⭐ IMPORTANT
+
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        handle_connection(stream);
+
+        pool.execute(|| {   // ⭐ CHANGE HERE
+            handle_connection(stream);
+        });
     }
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    let buf_reader = BufReader::new(&mut stream);
+    let buf_reader = BufReader::new(&stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 
     let (status_line, filename) = match &request_line[..] {
