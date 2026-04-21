@@ -34,3 +34,8 @@ Previously, the server was single-threaded, so one slow request (like /sleep) wo
 After using ThreadPool, multiple threads can handle different requests at the same time.
 This improves performance because requests no longer need to wait for each other. 
 The ThreadPool also limits the number of threads, making it more efficient and preventing resource overload.
+
+## Commit Bonus Reflection
+In this step, I created a new function build as a replacement for new in the ThreadPool implementation. 
+The build function internally calls new but it provides a clearer and more flexible way to construct the ThreadPool.
+This improvement makes the code easier to extend in the future, because additional logic can be added inside build without changing how the ThreadPool is created in other parts of the program.

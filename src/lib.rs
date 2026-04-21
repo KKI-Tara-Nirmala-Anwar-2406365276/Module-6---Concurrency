@@ -27,6 +27,10 @@ impl ThreadPool {
         ThreadPool { workers, sender }
     }
 
+    pub fn build(size: usize) -> ThreadPool {
+        ThreadPool::new(size)
+    }
+
     pub fn execute<F>(&self, f: F)
     where
         F: FnOnce() + Send + 'static,
