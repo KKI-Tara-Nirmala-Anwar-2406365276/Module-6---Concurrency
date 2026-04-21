@@ -19,3 +19,11 @@ Otherwise, it returns 404.html with 404 NOT FOUND.
 This split is important because the server must handle valid and invalid requests differently. 
 The refactoring is needed so the response is not always the same and becomes more realistic.
 ![Commit 3](assets/images/commit3.png)
+
+
+## Commit 4 Reflection
+In this step, I simulated a slow response using /sleep by adding a delay. 
+I observed that when accessing /sleep, other requests are also delayed.
+This happens because the server is single-threaded and can only handle one request at a time. 
+While one request is being processed, other requests must wait.
+This shows the limitation of a single-threaded server and why multithreading is needed to improve performance.
