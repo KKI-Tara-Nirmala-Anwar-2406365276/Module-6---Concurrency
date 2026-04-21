@@ -11,3 +11,11 @@ In this step, I modified the server to return an actual HTTP response instead of
 I used fs::read_to_string("hello.html") to read the HTML file and send it back to the browser. 
 This made the browser finally display a real webpage instead of nothing.
 ![Commit 2](assets/images/commit2.png)
+
+## Commit 3 Reflection
+In this step, I modified the server to respond differently based on the request. 
+If the request is for the root path, it returns hello.html with 200 OK. 
+Otherwise, it returns 404.html with 404 NOT FOUND.
+This split is important because the server must handle valid and invalid requests differently. 
+The refactoring is needed so the response is not always the same and becomes more realistic.
+![Commit 3](assets/images/commit3.png)
